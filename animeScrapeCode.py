@@ -1,7 +1,7 @@
+#!/usr/bin/python3
 from bs4 import BeautifulSoup
-import requests
-import csv
-import lxml
+import urllib.request, urllib.parse, urllib.error
+import cs
 
 url = '#untitle website's URL'
 
@@ -11,9 +11,9 @@ with open('anime.csv', 'w', newline='') as anime:
     while count <= 99999:
         url2 = url + str(count)
         print(url2)
-        uh = requests.get(url2, timeout=3)
+        uh = urllib.request.urlopen(url2, [timeout=3])
         data = uh.text
-        soup = BeautifulSoup(data, "lxml")
+        soup = BeautifulSoup(data, "html.parser")
         tags = soup.find('font')
         count += 1
         if tags is None:
